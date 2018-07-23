@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import com.packt.webstore.service.ProductService;
 
 @Controller
+@RequestMapping("market")
 public class ProductController {
 	
 	
