@@ -30,7 +30,7 @@ public class ProductController {
 		
 		service.updateAllStock();
 		
-		return "redirect:/products";
+		return "redirect:market/products";
 	}
 	
 	
