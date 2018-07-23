@@ -25,6 +25,21 @@ public class InMemoryProductRepository implements ProductRepository{
 	private NamedParameterJdbcTemplate jdbcTemplate;
 	
 	
+	
+	
+	
+
+	public List<Product> getProductsByCategory(String category) {
+		
+		Map<String, Object> param = new HashMap<String, Object>();
+		
+		param.put("category", category);
+		
+		List<Product> list = jdbcTemplate.query("SELECT * FROM PRODUCTS WHERE CATEGORY "
+				+ "=:category", param, new ProductMapper());
+		
+		return list;
+	}
 
 	public void updateStock(String productId, long noOfUnits) {
 		String SQL = "UPDATE PRODUCTS SET UNITS_IN_STOCK = :unitsInStock WHERE ID = :id";
