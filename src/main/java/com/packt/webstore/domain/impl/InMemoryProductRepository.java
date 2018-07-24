@@ -25,8 +25,13 @@ public class InMemoryProductRepository implements ProductRepository{
 	private NamedParameterJdbcTemplate jdbcTemplate;
 	
 	
-	
-	
+	public List<Product> getProductsByFilter(Map<String, List<String>> filterParam) {
+		
+		String SQL = "SELECT * FROM PRODUCTS WHERE CATEGORY IN ( :categories) "
+				+ "AND MANUFACTURER IN ( :brands)";
+		
+		return jdbcTemplate.query(SQL, filterParam, new ProductMapper());
+	}
 	
 
 	public List<Product> getProductsByCategory(String category) {

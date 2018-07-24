@@ -1,6 +1,7 @@
 package com.packt.webstore.service.imp;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -36,6 +37,11 @@ public class ProductServiceImpl implements ProductService{
 	public List<Product> getProductsByCategory(String category) {
 		
 		return repository.getProductsByCategory(category);
+	}
+
+	public List<Product> getProductByFilter(Map<String, List<String>> filterParam) {
+		
+		return repository.getProductsByFilter(filterParam);
 	}
 	
 	
