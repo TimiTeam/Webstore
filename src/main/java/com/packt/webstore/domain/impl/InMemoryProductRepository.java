@@ -25,6 +25,38 @@ public class InMemoryProductRepository implements ProductRepository{
 	private NamedParameterJdbcTemplate jdbcTemplate;
 	
 	
+	
+	
+	
+	
+	
+	public List<Product> getProductByMultipleCriteria(String category, Map<String, List<String>> priceLowAndHigh,
+			String brand) {
+		
+		String SQL = "SELECT * FROM PRODUCTS WHERE CATEGORY = :category AND MANUFACTURER = :brand AND UNIT_PRICE BETWEEN :low"
+				+ " AND :high";
+		
+		Map<String,Object> param = new HashMap<String, Object>();
+		param.put("category", category);
+		param.put("brand", brand);
+		param.put("low", priceLowAndHigh.get("low"));
+		param.put("high", priceLowAndHigh.get("high"));
+		
+		return jdbcTemplate.query(SQL, param, new ProductMapper());
+	}
+
+
+	public Product getProductById(String productId) {
+		
+		String SQL = "SELECT * FROM PRODUCTS WHERE ID = :id";
+		
+		Map<String, Object> param = new HashMap<String, Object>();
+		param.put("id", productId);
+		
+		return jdbcTemplate.queryForObject(SQL, param, new ProductMapper());
+	}
+
+
 	public List<Product> getProductsByFilter(Map<String, List<String>> filterParam) {
 		
 		String SQL = "SELECT * FROM PRODUCTS WHERE CATEGORY IN ( :categories) "

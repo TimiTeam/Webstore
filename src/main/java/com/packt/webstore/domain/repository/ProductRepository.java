@@ -16,5 +16,9 @@ public interface ProductRepository {
 	List<Product> getProductsByCategory(String category);
 	
 	List<Product> getProductsByFilter(Map<String,List<String>> filterParam);
+	
+	Product getProductById(String productId);
+	
+	List<Product> getProductByMultipleCriteria(String category,Map<String,List<String>> priceLowAndHigh, String brand);
 
 }

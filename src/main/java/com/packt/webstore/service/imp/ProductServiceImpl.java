@@ -43,6 +43,19 @@ public class ProductServiceImpl implements ProductService{
 		
 		return repository.getProductsByFilter(filterParam);
 	}
+
+	public Product getProductById(String productId) {
+		
+		return repository.getProductById(productId);
+	}
+
+	public List<Product> getProductByMultipleCriteria(String category, Map<String, List<String>> priceLowAndHigh,
+			String brand) {
+		
+		return repository.getProductByMultipleCriteria(category, priceLowAndHigh, brand);
+	}
+	
+	
 	
 	
 	
